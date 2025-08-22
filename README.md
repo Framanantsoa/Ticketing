@@ -12,8 +12,10 @@
     * Velomina ny postgres
 
     * Miditra ao anaty projet express dia avy eo lancena ny commande : **npm run start**
-
-    * Amboarina ny application.properties ao @ ireo projet JAVA anakiroa, atao mifanaraka @ tokony ho izy.
+      
+    * Amboarina ny application.properties ao @ projet spring.
+      
+    * Amboarina ny fichier persistence.xml ao @ projet mini-framework (bin/META-INF).
 
     * Amboarina ilay fichier de deployement hoan'ny mini-framework
         * Raha windows dia manamboatra .bat
