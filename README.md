@@ -1,0 +1,26 @@
+# TICKETING
+
+## Tsotra fotsiny aloha
+
+* **Environnements**
+    * Mini-framework : JAVA-11
+    * Spring : JAVA-17
+    * Express-cdn : ^Node-18
+    * Postgres : ^13
+
+* **Lancement en local**
+    * Velomina ny postgres
+
+    * Miditra ao anaty projet express dia avy eo lancena ny commande : **npm run start**
+
+    * Amboarina ny application.properties ao @ ireo projet JAVA anakiroa, atao mifanaraka @ tokony ho izy.
+
+    * Amboarina ilay fichier de deployement hoan'ny mini-framework
+        * Raha windows dia manamboatra .bat
+        * Raha linux kosa dia ovaina fotsiny ireo chemin
+
+    * Executena ilay fichier
+
+    * Lancena ihany koa ilay projet Spring
+
+## Vita tompoko
