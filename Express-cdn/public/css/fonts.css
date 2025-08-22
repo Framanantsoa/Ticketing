@@ -1,0 +1,50 @@
+/* Montserrat Light */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+/* Montserrat Bold */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700; 
+    font-style: normal;
+}
+
+/* Lora Regular */
+@font-face {
+    font-family: 'Lora';
+    src: url('../fonts/Lora-Regular.ttf') format('truetype');
+    font-weight: 400; 
+    font-style: normal;
+}
+/* Lora SemiBold */
+@font-face {
+    font-family: 'Lora';
+    src: url('../fonts/Lora-SemiBold.ttf') format('truetype');
+    font-weight: 600; /* SemiBold = 600 */
+    font-style: normal;
+}
+
+
+/* Montserrat */
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+.font-montserrat-bold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/* Lora */
+.font-lora {
+    font-family: 'Lora', serif;
+    font-variant-numeric: tabular-nums; /* chiffres alignés */
+}
+.font-lora-bold {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
