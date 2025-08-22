@@ -1,0 +1,17 @@
+{
+  "name": "Ticketing",
+  "version": "1.0.0",
+  "description": "project with Express JS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Fra",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "bootstrap-icons": "^1.11.3"
+  }
+}
