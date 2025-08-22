@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://localhost:3000/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/fonts.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/index.css">
+    <title th:text="'Réservations - AENUM'">AENUM</title>
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{layout/header :: header}"></div>
+
+    <div class="container-fluid min-vh-100 py-5" style="background-color: #f8f5f0; padding-top: 60px;">
+        <div class="container py-5">
+            <h2 class="mb-5 text-center font-montserrat-bold" style="color:#2c3e50;">Liste des réservations</h2>
+    
+            <!-- Formulaire filtre -->
+            <form th:action="@{/reservations/liste}" method="get" class="mb-4 d-flex justify-content-center">
+                <select name="statut" class="form-select w-auto me-2 font-lora">
+                    <option th:value="${null}" th:selected="${statut == null or statut == ''}">-- Tous les statuts --</option>
+                    <option th:value="'Validé'" th:selected="${statut == 'Validé'}">Validé</option>
+                    <option th:value="'En attente'" th:selected="${statut == 'En attente'}">En attente</option>
+                    <option th:value="'Refusé'" th:selected="${statut == 'Refusé'}">Refusé</option>
+                    <option th:value="'Annulé'" th:selected="${statut == 'Annulé'}">Annulé</option>
+                </select>
+                <button type="submit" class="btn btn-dark font-montserrat">
+                    <i class="bi bi-funnel"></i> Filtrer
+                </button>
+            </form>
+
+            <div class="table-responsive shadow rounded-3 bg-white p-3">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">CIN</th>
+                            <th scope="col">Télephone</th>
+                            <th scope="col">Sièges</th>
+                            <th scope="col">Enfants</th>
+                            <th scope="col">Statut</th>
+                            <th scope="col">Trajet</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Boucle sur la liste des réservations -->
+                        <tr th:each="dto : ${reservations}">
+                            <th class="font-lora" th:text="${dto.cin}"></th>
+                            <td class="font-lora" th:text="${dto.telephone}"></td>
+                            <td class="font-lora" th:text="${dto.sieges}"></td>
+                            <td class="font-lora" th:text="${dto.enfants}"></td>
+                            <td class="font-lora" th:text="${dto.statut}"></td>
+                            <td class="font-lora" th:text="${dto.trajet}"></td>
+                            <td>
+                                <!-- Si la réservation est en attente -->
+                                <div th:if="${dto.statut == 'En attente'}">
+                                    <a th:href="@{/reservations/{id}/accepter(id=${dto.idReservation})}" 
+                                       class="btn btn-success btn-sm font-montserrat">
+                                        <i class="bi bi-check-circle"></i>
+                                    </a>
+                                    <a th:href="@{/reservations/{id}/refuser(id=${dto.idReservation})}" 
+                                       class="btn btn-danger btn-sm font-montserrat">
+                                        <i class="bi bi-x-circle"></i>
+                                    </a>
+                                </div>
+                            
+                                <!-- Si la réservation est validée -->
+                                <div th:if="${dto.statut == 'Validé'}">
+                                    <a th:href="@{/reservations/{id}/imprimer(id=${dto.idReservation})}" 
+                                       class="btn btn-primary btn-sm font-montserrat" target="_blank">
+                                        <i class="bi bi-printer"></i>
+                                    </a>
+                                    <a th:href="@{/reservations/{id}/annuler(id=${dto.idReservation})}" 
+                                       class="btn btn-danger btn-sm font-montserrat">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </a>
+                                </div>
+                            </td>                            
+                        </tr>
+
+                        <!-- Si la liste est vide -->
+                        <tr th:if="${#lists.isEmpty(reservations)}">
+                            <td colspan="7" class="text-center font-lora" style="color:#7f8c8d;">
+                                Aucune réservation trouvée.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{layout/footer :: footer}"></div>
+
+    <script>
+        // Hover effect pour les cartes
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
+    <script src="http://localhost:3000/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

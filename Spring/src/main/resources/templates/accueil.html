@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://localhost:3000/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/fonts.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/index.css">
+    <title th:text="'Accueil - AENUM'">Accueil</title>
+</head>
+<body>
+    <!-- Réutilisation du header -->
+    <div th:replace="~{layout/header :: header}"></div>
+
+    <header class="d-flex align-items-center justify-content-center text-center"
+     style="height: 100vh; 
+     background: url('http://localhost:3000/img/bg2.jpg') no-repeat center center; 
+     background-size: cover;">
+        <div class="text-white">
+            <h1 class="display-3 font-montserrat-bold">Bienvenue sur AENUM</h1>
+            <p class="lead font-lora">Vous pouvez gérer la compagnie ici.</p>
+        </div>
+    </header>   
+
+    <!-- Réutilisation du footer -->
+    <div th:replace="~{layout/footer :: footer}"></div>
+
+    <script src="http://localhost:3000/js/toggle-pwd.js"></script>
+    <script src="http://localhost:3000/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

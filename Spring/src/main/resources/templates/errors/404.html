@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://localhost:3000/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/fonts.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/index.css">
+    <title th:text="'404 - AENUM'">AENUM</title>
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{layout/header :: header}"></div>
+
+    <div class="container d-flex flex-column justify-content-center
+    align-items-center vh-100 text-center font-montserrat bg-light">
+        <h1 class="display-1 text-warning font-montserrat-bold">404</h1>
+
+        <h2 class="mb-3 font-lora-bold">Page non trouvée</h2>
+
+        <p class="lead font-lora" th:text="${message}"></p>
+        <a href="/accueil" class="btn btn-primary mt-3
+        font-montserrat-bold">Retour à l'accueil</a>
+    </div>
+    
+    <!-- Footer -->
+    <div th:replace="~{layout/footer :: footer}"></div>
+
+    <script src="http://localhost:3000/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
