@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://localhost:3000/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/fonts.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/index.css">
+    <title th:text="'Vols - AENUM'">AENUM</title>
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{layout/header :: header}"></div>
+
+    <div class="container-fluid min-vh-100 py-5" style="background-color: #f8f5f0; padding-top: 60px;">
+        <div class="container py-5">
+            <h2 class="mb-5 text-center font-montserrat-bold" style="color:#2c3e50;">Liste des vols</h2>
+
+            <div class="row g-4">
+                <!-- Vérifie si la liste n'est pas vide -->
+                <div th:if="${#lists.isEmpty(vols)}" class="col-12 text-center font-lora" style="color:#7f8c8d;">
+                    Aucune vol trouvée.
+                </div>
+
+                <div th:each="vol : ${vols}" class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card h-100 shadow border-0 rounded-3"
+                        style="background-color: bisque; transition: transform 0.3s, box-shadow 0.3s; position: relative;">
+                        <div class="card-body">
+                            <!-- Icône d'avion -->
+                            <i class="bi bi-airplane-fill mb-3 text-center" style="font-size: 2.0rem; color: #1a1a2e;"></i>
+
+                            <!-- Trajet -->
+                            <h5 class="card-title font-montserrat text-center" style="color: navy;"
+                                th:text="${vol.trajet.depart.nomVille}">
+                                Trajet
+                            </h5>
+                            <h5 class="text-center"> - </h5>
+                            <h5 class="card-title font-montserrat text-center" style="color: navy;"
+                                th:text="${vol.trajet.arrivee.nomVille}">
+                                Trajet
+                            </h5>
+                
+                            <!-- Détails des dates -->
+                            <strong class="font-lora-bold">Départ :</strong> 
+                            <span class="font-lora" th:text="${#temporals.format(vol.dateDepart,'yyyy-MM-dd HH:mm')}">Départ</span><br>
+                            <strong class="font-lora-bold">Arrivée :</strong> 
+                            <span class="font-lora" th:text="${vol.dateArrivee!=null ?
+                             #temporals.format(vol.dateArrivee,'yyyy-MM-dd HH:mm') : '-'}">Arrivée</span><br><hr>
+
+                            <!-- Nom de l'avion -->
+                            <h5 class="font-lora text-center" th:text="${vol.avion.nomAvion}">Nom Avion</h5>
+
+                            <div class="d-flex justify-content-center gap-3 mt-3">
+                                <a th:href="@{/vols/{id}/edition(id=${vol.idVol})}" class="text-primary" title="Modifier">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+                                <a th:href="@{/vols/{id}/suppression(id=${vol.idVol})}" class="text-danger" title="Supprimer">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{layout/footer :: footer}"></div>
+
+    <script>
+        // Hover effect pour les cartes
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
+    <script src="http://localhost:3000/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

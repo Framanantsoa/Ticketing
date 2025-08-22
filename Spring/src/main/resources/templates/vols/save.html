@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="http://localhost:3000/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/fonts.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/index.css">
+    <title th:text="'Vols - AENUM'">AENUM</title>
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{layout/header :: header}"></div>
+
+    <div class="container-fluid min-vh-100 d-flex align-items-center" style="padding-top: 60px;">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mx-auto">
+                    <div class="card shadow p-4 border-0 bg-dark text-white">
+                        <h3 class="mb-4 font-montserrat-bold text-center"
+                        th:text="${vol != null} ? 'Modification de vol' : 'Création de vol'">Action sur vol</h3>
+
+                        <form th:action="@{${vol} != null ? '/vols/'+${vol.idVol}+'/edition' : '/vols/creation'}"
+                            method="post" class="font-lora">
+                            
+                            <!-- Date départ -->
+                            <div class="mb-3">
+                                <label for="dateDepart" class="form-label font-lora-bold">Date départ</label>
+                                <input type="datetime-local" class="form-control border-0" id="dateDepart" name="dateDepart"
+                                    th:value="${vol != null} ? ${vol.dateDepart} : ''" required>
+                            </div>
+
+                            <!-- Date arrivée -->
+                            <div class="mb-3">
+                                <label for="dateArrivee" class="form-label font-lora-bold">Date d'arrivée</label>
+                                <input type="datetime-local" class="form-control border-0" id="dateArrivee" name="dateArrivee"
+                                    th:value="${vol != null} ? ${vol.dateArrivee} : ''">
+                            </div>
+
+                            <!-- Sélection trajet -->
+                            <div class="mb-3">
+                                <label for="idTrajet" class="form-label font-lora-bold">Trajet</label>
+                                <select class="form-select border-0" id="idTrajet" name="idTrajet" required>
+                                    <option value="">Sélectionner un trajet</option>
+                                    <option th:each="t : ${trajets}" th:value="${t.idTrajet}"
+                                            th:text="${t.depart.nomVille} + ' - ' + ${t.arrivee.nomVille}"
+                                            th:selected="${vol != null} ? ${vol.trajet.idTrajet == t.idTrajet} : false">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <!-- Sélection avion -->
+                            <div class="mb-3">
+                                <label for="idAvion" class="form-label font-lora-bold">Avion</label>
+                                <select class="form-select border-0" id="idAvion" name="idAvion" required>
+                                    <option value="">Sélectionner un avion</option>
+                                    <option th:each="a : ${avions}" th:value="${a.idAvion}" th:text="${a.nomAvion}"
+                                            th:selected="${vol != null} ? ${vol.avion.idAvion == a.idAvion} : false">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <!-- Bouton -->
+                            <div class="d-grid mx-auto mt-4">
+                                <button type="submit" class="btn btn-primary font-montserrat-bold" 
+                                        th:text="${vol != null} ? 'Modifier' : 'Créer'">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="col-lg-6 text-center">
+                    <img src="http://localhost:3000/img/vol.png" alt="Vol" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="~{layout/footer :: footer}"></div>
+
+    <script src="http://localhost:3000/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
