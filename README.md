@@ -10,6 +10,8 @@
 
 * **Lancement en local**
     * Velomina ny postgres
+      
+    * Apidirina daolo ireo script efatra 1 ka hatr@ 4 ao anaty db (Mini-Framework)
 
     * Miditra ao anaty projet express dia avy eo lancena ny commande : **npm run start**
       
