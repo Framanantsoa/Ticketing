@@ -1,0 +1,6 @@
+DROP DATABASE IF EXISTS avions;
+
+CREATE DATABASE avions;
+\c avions
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
