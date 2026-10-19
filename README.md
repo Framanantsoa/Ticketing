@@ -1,30 +1,44 @@
 # TICKETING
 
-## Tsotra fotsiny aloha
+## Aperçu
 
-* **Environnements**
-    * Mini-framework : JAVA-11
-    * Spring : JAVA-17
-    * Express-cdn : ^Node-18
-    * Postgres : ^13
+Ce projet est une application de gestion de tickets d'avion composée de trois modules complémentaires : un mini-framework Java, une API Spring Boot et une couche Express/CDN.
 
-* **Lancement en local**
-    * Velomina ny postgres
-      
-    * Apidirina daolo ireo script efatra 1 ka hatr@ 4 ao anaty db (Mini-Framework)
+## Environnements
 
-    * Miditra ao anaty projet express dia avy eo lancena ny commande : **npm run start**
-      
-    * Amboarina ny application.properties ao @ projet spring.
-      
-    * Amboarina ny fichier persistence.xml ao @ projet mini-framework (bin/META-INF).
+| Composant | Technologie | Version |
+|-----------|-------------|---------|
+| Mini-framework | Java | 11 |
+| API | Spring Boot (Java) | 17 |
+| Couche Express/CDN | Node.js | ^18 |
+| Base de données | PostgreSQL | ^13 |
 
-    * Amboarina ilay fichier de deployement hoan'ny mini-framework
-        * Raha windows dia manamboatra .bat
-        * Raha linux kosa dia ovaina fotsiny ireo chemin
+## Lancement en local
 
-    * Executena ilay fichier
+1. **Démarrer PostgreSQL** sur votre machine.
 
-    * Lancena ihany koa ilay projet Spring
+2. **Exécuter les scripts SQL** dans l'ordre (1 à 4) dans la base de données requise par le mini-framework.
 
-## Vita tompoko
+3. **Lancer la couche Express** :
+   ```bash
+   cd express
+   npm run start
+   ```
+
+4. **Configurer le projet Spring** :
+   - Renseigner le fichier application.properties avec vos paramètres de connexion.
+
+5. **Configurer le mini-framework** :
+   - Renseigner le fichier persistence.xml situé dans bin/META-INF.
+  
+6. **Configurer le fichier de déploiement du mini-framework** :
+   - *Windows* : créer un fichier .bat.
+   - *Linux* : adapter les chemins dans le script existant.
+   
+7. **Exécuter le fichier de déploiement du mini-framework.**
+
+8. **Lancer le projet Spring**
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+   
